@@ -52,4 +52,7 @@ public class Ville {
 	public void setLigne(String ligne) {
 		this.ligne = ligne;
 	}
+	public String toString() {
+		return "Ville [nomCommune=" + nomCommune + ", codePostal=" + codePostal + "]";
+	}
 }
