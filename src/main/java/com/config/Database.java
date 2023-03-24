@@ -11,7 +11,7 @@ public class Database {
 	public Database() {
 	      try {
 	         Class.forName("com.mysql.cj.jdbc.Driver");
-	         this.con = DriverManager.getConnection("jdbc:mysql://localhost:3306/twic_villes_france?serverTimezone=UTC&useSSL=false", "root", "network");
+	         this.con = DriverManager.getConnection("jdbc:mysql://localhost:3306/twic_villes_france?serverTimezone=UTC&useSSL=false", "root", "");
 	         System.out.println("Connexion réussie !");
 	      }
 	      catch (SQLException | ClassNotFoundException  e) {
