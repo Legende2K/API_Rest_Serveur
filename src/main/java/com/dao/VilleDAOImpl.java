@@ -22,9 +22,13 @@ public class VilleDAOImpl implements VilleDAO {
 			statementResult = statementRequest.executeQuery();
 			while (statementResult.next()) {
 				Ville ville = new Ville();
-				ville.setCodePostal(statementResult.getString("Code_postal"));
-				ville.setLigne(statementResult.getString("Ligne_5"));
-				ville.setNomCommune(statementResult.getString("Nom_commune"));
+				ville.setCodeCommune(statementResult.getString("Code_commune_INSEE"));
+                ville.setNomCommune(statementResult.getString("Nom_commune"));
+                ville.setCodePostal(statementResult.getString("Code_postal"));
+                ville.setLibelleAcheminement(statementResult.getString("Libelle_acheminement"));
+                ville.setLigne(statementResult.getString("Ligne_5"));
+                ville.setLatitude(statementResult.getString("Latitude"));
+                ville.setLongitude(statementResult.getString("Longitude"));
 				listVille.add(ville);
 			}
 		} catch (SQLException e) {
@@ -62,11 +66,15 @@ public class VilleDAOImpl implements VilleDAO {
 		Database database = new Database();
 		PreparedStatement statementRequest = null;
 		try {
-			String queryRequest = "INSERT INTO ville_france(Code_postal, Nom_commune, Ligne_5) VALUES (?, ?, ?)";
+			String queryRequest = "INSERT INTO ville_france(Code_commune_INSEE, Nom_commune, Code_postal, Libelle_acheminement, Ligne_5, Latitude, Longitude) VALUES (?, ?, ?, ?, ?, ?, ?)";
 			statementRequest = database.getConnection().prepareStatement(queryRequest);
-			statementRequest.setString(1, ville.getCodePostal());
-			statementRequest.setString(2, ville.getNomCommune());
-			statementRequest.setString(3, ville.getLigne());
+			statementRequest.setString(1, ville.getCodeCommune());
+            statementRequest.setString(2, ville.getNomCommune());
+            statementRequest.setString(3, ville.getCodePostal());
+            statementRequest.setString(4, ville.getLibelleAcheminement());
+            statementRequest.setString(5, ville.getLigne());
+            statementRequest.setString(6, ville.getLatitude());
+            statementRequest.setString(7, ville.getLongitude());
 			statementRequest.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
