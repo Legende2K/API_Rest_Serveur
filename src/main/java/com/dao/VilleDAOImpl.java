@@ -90,4 +90,29 @@ public class VilleDAOImpl implements VilleDAO {
 		}
 	}
 
+	@Override
+	public void updateVille(Ville ville) {
+	    Database database = new Database();
+	    PreparedStatement statementRequest = null;
+	    try {
+	        String queryRequest = "UPDATE ville_france SET Nom_commune=?, Ligne_5=? WHERE Code_postal=?";
+	        statementRequest = database.getConnection().prepareStatement(queryRequest);
+	        statementRequest.setString(1, ville.getNomCommune());
+	        statementRequest.setString(2, ville.getLigne());
+	        statementRequest.setString(3, ville.getCodePostal());
+	        statementRequest.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (statementRequest != null) {
+	                statementRequest.close();
+	            }
+	            database.closeDatabase();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
+
 }

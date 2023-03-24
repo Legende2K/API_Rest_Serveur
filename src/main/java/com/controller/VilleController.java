@@ -32,4 +32,11 @@ public class VilleController {
 		villeBLOService.addVille(ville);
 		return "Ville ajoutée avec succès";
 	}
+	
+	@RequestMapping(value="/ville", method=RequestMethod.PUT)
+	@ResponseBody
+	public String put(@RequestBody Ville ville) {
+	    villeBLOService.updateVille(ville);
+	    return "Ville mise à jour avec succès";
+	}
 }

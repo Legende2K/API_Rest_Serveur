@@ -9,4 +9,6 @@ public interface VilleBLO {
 	public ArrayList<Ville> getInfoVilles(String codePostal);
 
 	public void addVille(Ville ville);
+
+	public void updateVille(Ville ville);
 }

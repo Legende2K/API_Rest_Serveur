@@ -32,4 +32,10 @@ public class VilleBLOImpl implements VilleBLO {
 	public void addVille(Ville ville) {
 		villeDAO.addVille(ville);
 	}
+
+	@Override
+	public void updateVille(Ville ville) {
+	    villeDAO.updateVille(ville);
+	}
+
 }
