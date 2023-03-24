@@ -3,6 +3,7 @@ package com.controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,4 +40,12 @@ public class VilleController {
 	    villeBLOService.updateVille(ville);
 	    return "Ville mise à jour avec succès";
 	}
+	
+	@RequestMapping(value="/ville", method=RequestMethod.DELETE)
+	@ResponseBody
+	public String delete(@RequestParam(required=true, value="codePostal") String codePostal) {
+	    villeBLOService.deleteVille(codePostal);
+	    return "Ville supprimée avec succès";
+	}
+
 }

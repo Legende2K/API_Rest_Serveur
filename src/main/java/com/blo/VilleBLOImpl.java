@@ -38,4 +38,9 @@ public class VilleBLOImpl implements VilleBLO {
 	    villeDAO.updateVille(ville);
 	}
 
+	@Override
+	public void deleteVille(String codePostal) {
+		villeDAO.deleteVille(codePostal);
+	}
+
 }

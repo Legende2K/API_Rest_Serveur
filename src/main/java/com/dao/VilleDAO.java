@@ -10,4 +10,5 @@ public interface VilleDAO {
 	public ArrayList<Ville> findVillesAtPostalCode(String postalCode);
 	void addVille(Ville ville);
 	void updateVille(Ville ville);
+	void deleteVille(String codePostal);
 }

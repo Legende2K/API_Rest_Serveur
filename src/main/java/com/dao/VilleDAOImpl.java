@@ -115,4 +115,27 @@ public class VilleDAOImpl implements VilleDAO {
 	    }
 	}
 
+	@Override
+	public void deleteVille(String codePostal) {
+	    Database database = new Database();
+	    PreparedStatement statementRequest = null;
+	    try {
+	        String queryRequest = "DELETE FROM ville_france WHERE Code_postal=?";
+	        statementRequest = database.getConnection().prepareStatement(queryRequest);
+	        statementRequest.setString(1, codePostal);
+	        statementRequest.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (statementRequest != null) {
+	                statementRequest.close();
+	            }
+	            database.closeDatabase();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
+
 }
