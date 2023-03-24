@@ -28,4 +28,8 @@ public class VilleBLOImpl implements VilleBLO {
 		return listVille;
 	}
 
+	@Override
+	public void addVille(Ville ville) {
+		villeDAO.addVille(ville);
+	}
 }

@@ -11,7 +11,7 @@ import com.config.Database;
 import com.dto.Ville;
 
 @Repository
-public class VilleDAOImpl implements VilleDAO { 
+public class VilleDAOImpl implements VilleDAO {
 	private ArrayList<Ville> executeQuery(String queryRequest) {
 		ArrayList<Ville> listVille = new ArrayList<Ville>();
 		Database database = new Database();
@@ -55,6 +55,31 @@ public class VilleDAOImpl implements VilleDAO {
 	public ArrayList<Ville> findVillesAtPostalCode(String postalCode) {
 		String queryRequest = "SELECT * FROM ville_france WHERE Code_postal=" + postalCode + ";";
 		return executeQuery(queryRequest);
+	}
+
+	@Override
+	public void addVille(Ville ville) {
+		Database database = new Database();
+		PreparedStatement statementRequest = null;
+		try {
+			String queryRequest = "INSERT INTO ville_france(Code_postal, Nom_commune, Ligne_5) VALUES (?, ?, ?)";
+			statementRequest = database.getConnection().prepareStatement(queryRequest);
+			statementRequest.setString(1, ville.getCodePostal());
+			statementRequest.setString(2, ville.getNomCommune());
+			statementRequest.setString(3, ville.getLigne());
+			statementRequest.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (statementRequest != null) {
+					statementRequest.close();
+				}
+				database.closeDatabase();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }
