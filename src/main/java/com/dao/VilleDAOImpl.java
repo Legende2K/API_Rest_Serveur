@@ -64,6 +64,12 @@ public class VilleDAOImpl implements VilleDAO {
 		String queryRequest = "SELECT * FROM ville_france;";
 		return executeQuery(queryRequest);
 	}
+	
+	@Override
+	public ArrayList<Ville> findVillesAtCommuneCode(String codeCommune) {
+		String queryRequest = "SELECT * FROM ville_france WHERE Code_commune_INSEE='" + codeCommune + "';";
+		return executeQuery(queryRequest);
+	}
 
 	@Override
 	public ArrayList<Ville> findVillesAtPostalCode(String postalCode) {

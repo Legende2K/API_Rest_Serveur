@@ -22,9 +22,9 @@ public class VilleController {
 
 	@RequestMapping(value="/ville", method=RequestMethod.GET)
 	@ResponseBody
-	public ArrayList<Ville> get(@RequestParam(required=false, value="codePostal") String codePostal) {
-		System.out.println("get :" + codePostal);
-		return villeBLOService.getInfoVilles(codePostal);
+	public ArrayList<Ville> get(@RequestParam(required=false, value="codeCommune") String codeCommune, @RequestParam(required=false, value="codePostal") String codePostal) {
+		System.out.println("get : codeCommune = " +codeCommune +", codePostal = "+ codePostal);
+		return villeBLOService.getInfoVilles(codeCommune, codePostal);
 	}
 
 	@RequestMapping(value="/ville", method=RequestMethod.POST)

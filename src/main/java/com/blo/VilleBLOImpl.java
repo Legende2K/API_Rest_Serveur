@@ -15,11 +15,13 @@ public class VilleBLOImpl implements VilleBLO {
 	private VilleDAO villeDAO;
 
 	@Override
-	public ArrayList<Ville> getInfoVilles(String codePostal) {
+	public ArrayList<Ville> getInfoVilles(String codeCommune, String codePostal) {
 
 		ArrayList<Ville> listVille = new ArrayList<Ville>();
 
-		if (codePostal != null) {
+		if (codeCommune != null) {
+			listVille = villeDAO.findVillesAtCommuneCode(codeCommune);
+		} else if (codePostal != null) {
 			listVille = villeDAO.findVillesAtPostalCode(codePostal);
 		} else {
 			listVille = villeDAO.findAllVilles();
@@ -35,7 +37,7 @@ public class VilleBLOImpl implements VilleBLO {
 
 	@Override
 	public void updateVille(Ville ville) {
-	    villeDAO.updateVille(ville);
+		villeDAO.updateVille(ville);
 	}
 
 	@Override
