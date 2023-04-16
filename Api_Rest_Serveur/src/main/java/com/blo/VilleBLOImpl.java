@@ -41,8 +41,8 @@ public class VilleBLOImpl implements VilleBLO {
 	}
 
 	@Override
-	public void deleteVille(String codePostal) {
-		villeDAO.deleteVille(codePostal);
+	public void deleteVille(String codeCommune) {
+		villeDAO.deleteVille(codeCommune);
 	}
 
 }

@@ -12,5 +12,5 @@ public interface VilleBLO {
 
 	public void updateVille(Ville ville);
 
-	public void deleteVille(String codePostal);
+	public void deleteVille(String codeCommune);
 }

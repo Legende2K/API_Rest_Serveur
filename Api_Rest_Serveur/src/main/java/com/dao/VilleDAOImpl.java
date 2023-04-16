@@ -104,11 +104,11 @@ public class VilleDAOImpl implements VilleDAO {
 	    Database database = new Database();
 	    PreparedStatement statementRequest = null;
 	    try {
-	        String queryRequest = "UPDATE ville_france SET Nom_commune=?, Ligne_5=? WHERE Code_postal=?";
+	        String queryRequest = "UPDATE ville_france SET Nom_commune=?, Ligne_5=? WHERE Code_commune_INSEE=?";
 	        statementRequest = database.getConnection().prepareStatement(queryRequest);
 	        statementRequest.setString(1, ville.getNomCommune());
 	        statementRequest.setString(2, ville.getLigne());
-	        statementRequest.setString(3, ville.getCodePostal());
+	        statementRequest.setString(3, ville.getCodeCommune());
 	        statementRequest.executeUpdate();
 	    } catch (SQLException e) {
 	        e.printStackTrace();
@@ -125,13 +125,13 @@ public class VilleDAOImpl implements VilleDAO {
 	}
 
 	@Override
-	public void deleteVille(String codePostal) {
+	public void deleteVille(String codeCommune) {
 	    Database database = new Database();
 	    PreparedStatement statementRequest = null;
 	    try {
-	        String queryRequest = "DELETE FROM ville_france WHERE Code_postal=?";
+	        String queryRequest = "DELETE FROM ville_france WHERE Code_commune_INSEE=?";
 	        statementRequest = database.getConnection().prepareStatement(queryRequest);
-	        statementRequest.setString(1, codePostal);
+	        statementRequest.setString(1, codeCommune);
 	        statementRequest.executeUpdate();
 	    } catch (SQLException e) {
 	        e.printStackTrace();

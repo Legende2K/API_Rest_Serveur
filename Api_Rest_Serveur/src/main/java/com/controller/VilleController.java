@@ -43,8 +43,8 @@ public class VilleController {
 	
 	@RequestMapping(value="/ville", method=RequestMethod.DELETE)
 	@ResponseBody
-	public String delete(@RequestParam(required=true, value="codePostal") String codePostal) {
-	    villeBLOService.deleteVille(codePostal);
+	public String delete(@RequestParam(required=true, value="codeCommune") String codeCommune) {
+	    villeBLOService.deleteVille(codeCommune);
 	    return "Ville supprimée avec succès";
 	}
 
